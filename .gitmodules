@@ -1,0 +1,3 @@
+[submodule "ricco"]
+	path = ricco
+	url = https://github.com/shrkwv/ricco
