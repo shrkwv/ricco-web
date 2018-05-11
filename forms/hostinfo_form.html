@@ -1,0 +1,159 @@
+
+<script type="text/javascript">
+ $(document).ready(function(){
+  $("#fixedarea").hide();
+  $("#domain").children().prop('disabled', true);
+  $("#ipsfile").children().prop('disabled', true);
+  $("#ips").children().prop('disabled', true);
+
+  $("#hostinputselector").change(function(){
+    $("#fixedarea").hide();
+    $("#ips").hide();
+    $("#ipsfile").hide();
+    $("#domain").hide();
+
+    $("#i_domain").prop('disabled', true);
+    $("#i_ipsfile").prop('disabled', true);
+    $("#i_ips").prop('disabled', true);
+
+
+    $(this).find("option:selected").each(function(){
+      if($(this).attr("value")=="ips"){
+        $("#hostform").show();
+        $("#fixedarea").show();
+        $("#ips").show();
+
+        $("#i_ips").prop('disabled', false);
+
+      }
+      else if($(this).attr("value")=="ipsfile"){
+        $("#hostform").show();
+        $("#fixedarea").show();
+        $("#ipsfile").show();
+        $("#i_ipsfile").prop('disabled', false);
+      }
+      else if($(this).attr("value")=="domain"){
+        $("#hostform").show();
+        $("#fixedarea").show();
+        $("#domain").show();
+        $("#i_domain").prop('disabled', false);
+      }
+    });
+  }).change();
+});
+
+</script>
+
+<div id="gethostinfo">
+  <form class="form-horizontal" id="script_form">
+
+  <legend>Get Host Info</legend>
+  <fieldset >
+   <!-- Form Name -->
+   <div id="selectinput"> 
+     <div class="form-group">
+      <label for="hostinputselector" class="col-sm-4 control-label">Input type:</label>
+      <div class="col-sm-8 selectContainer">
+        <select class="form-control" id="hostinputselector">
+          <option value="" selected disabled>Please select</option>
+
+          <option value="ips">From IPs</option>
+          <option value="ipsfile">From IPs file</option>
+          <option value="domain">From domain</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div id="domain">
+
+    <!-- Text input-->
+
+    
+    
+    <div class="form-group">
+     <label for="i_domain" class="col-sm-4 control-label">Domain</label>
+     <div class="col-sm-8">
+      <input id="i_domain" name="domain" type="text" placeholder="domain" class="form-control">
+
+    </div>
+  </div>
+
+  <!-- File input-->
+  <div class="form-group">
+   <label class="col-sm-4 control-label" for="i_subfile">Subdomains File</label>
+   <div class="col-sm-8">
+    <input class="file" id="i_subfile" type="file" name="upl" >
+
+  </div>
+
+</div>
+</div>
+
+
+
+
+
+
+<div id="ips">
+  <!-- Text input-->
+  <div class="form-group">
+   <label class="col-sm-4 control-label" for="i_ips">IPs</label>
+   <div class="col-sm-8">
+    <input id="i_ips" name="ips" type="text" placeholder="ips" class="form-control">
+
+  </div>
+</div>
+</div>
+
+
+
+<div id="ipsfile">
+
+  <!-- File input-->
+  <div class="form-group">
+    <label class="col-sm-4 control-label" for="i_ipsfile">IPs File</label>
+    <div class="col-sm-8">
+      <input class="file" id="i_ipsfile" type="file" name="upl">
+
+    </div>
+  </div>
+</div>
+
+
+
+<div id="fixedarea">
+
+  <div class="form-group">
+   <label class="col-sm-4 control-label" for="query">Query</label>
+   <div class="col-sm-8">
+    <input id="query" name="query" type="text" placeholder="query" class="form-control">
+
+  </div>
+</div>
+
+
+<!-- Multiple Checkboxes -->
+<div class="form-group">
+ <label class="col-sm-4 control-label" for="options">Options</label>
+ <div class="col-sm-offset-4 col-sm-8">
+  <div class="checkbox">
+   <label class="checkbox" for="recursive"><input type="checkbox" name="recursive" id="recursive" value="true">Recursive</label>
+   <label class="checkbox" for="alive"><input type="checkbox" name="alive" id="alive" value="true">Check if alive</label>
+ </div>
+</div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+ <div class="col-sm-offset-4 col-sm-8">
+  <button id="run" name="run" type="submit" class="btn btn-primary">Run!</button>
+</div>
+</div>
+</div>
+
+</fieldset>
+</form>
+</div>

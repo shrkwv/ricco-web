@@ -1,0 +1,116 @@
+<div id="vector">
+    <form class="form-horizontal" id="script_form">
+
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Vector</legend>
+
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="vector">vector</label>
+
+                <div class="checkbox">
+                    <div class="col-sm-8" id="selector">
+                        <select id="type" name="vector" class="form-control">
+                            <option value="">Please Choose vector</option>
+                            <script type="text/javascript">
+
+                                $.getJSON( "ricco/core/vectors.json", function( data ) {
+                                    $.each( data, function( key, val ) {
+                                        $('select#type').append(
+                                        $("<option></option>")
+                                        .text(key)
+                                        .val(key)
+
+
+                                                                  );
+            });
+        });
+
+                            </script>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="target" class="col-sm-4 control-label">Target</label>
+
+                <div class="col-sm-8">
+                    <input id="target" name="target" type="text" placeholder="target" class="form-control">
+
+                </div>
+            </div>
+
+
+            <!-- Multiple Checkboxes -->
+            <div id="arguments" class="form-group">
+                <script type="text/javascript">
+                			$("select#type").change(function(){
+                                $( "div#arguments" ).empty();
+                                var vectorName = $(this).find(":selected").text();
+                                console.log(vectorName)
+                                $.getJSON( "ricco/core/vectors.json", function( data ) {
+                                var args = data[vectorName]["args"]
+                                console.log(args)
+                                var base_div = $('div#arguments')
+                                $.each(args, function(index,arg){
+                                    console.log(arg)
+                                    var arg_div_name ="my"+arg
+                                    $(base_div).append(
+                                    $("<div></div>")
+                                    <!--.addClass("form-group")-->
+                                    .attr('id',arg_div_name)
+
+                                    );
+
+                                    var div_arg = $("div#"+arg_div_name)
+                                    $(div_arg).append(
+
+                                    $("<label></label>")
+                                    .attr('for', arg)
+                                    .addClass("col-sm-4 control-label")
+                                    .text(arg)
+                                    );
+                                    $(div_arg).append(
+
+                                    $("<div></div>")
+
+                                    .addClass("col-sm-8 form-group")
+                                    .attr('id', arg)
+                                    );
+                                    $("div#"+arg).append(
+                                    $("<input></input>")
+                                    .attr('id', arg)
+                                    .attr('name', arg)
+                                    .attr('type', "text")
+                                    .attr('placeholder', arg)
+                                    .addClass("form-control")
+                                    );
+
+                                });
+
+            });
+        });
+
+
+
+
+
+                </script>
+
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button id="run" name="run" type="submit" class="btn btn-primary">Run!</button>
+                </div>
+            </div>
+        </fieldset>
+
+    </form>
+</div>

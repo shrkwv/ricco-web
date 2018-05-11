@@ -1,0 +1,70 @@
+<div id="strategy">
+    <form class="form-horizontal" id="script_form">
+
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Strategy</legend>
+
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="strategy">Strategy</label>
+
+                <div class="checkbox">
+                    <div class="col-sm-8" id="selector">
+                        <select id="type" name="strategy" class="form-control">
+                            <option value="">Please Choose Strategy</option>
+                            <script type="text/javascript">
+
+                                $.getJSON( "ricco/core/strategies.json", function( data ) {
+                                    var items = [];
+                                    $.each( data, function( key, val ) {
+                                        $('select#type').append(
+                                        $("<option></option>")
+                                        .text(key)
+                                        .val(key)
+                                                                  );
+
+            });
+        });
+
+
+                            </script>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label for="target" class="col-sm-4 control-label">Target</label>
+
+                <div class="col-sm-8">
+                    <input id="target" name="target" type="text" placeholder="target" class="form-control">
+
+                </div>
+            </div>
+
+
+            <!-- Multiple Checkboxes -->
+            <div class="form-group">
+                <label class="col-sm-4 control-label" for="options">Options</label>
+
+                <div class="col-sm-offset-4 col-sm-8">
+                    <div class="checkbox" id="options">
+                        <label class="checkbox" for="proxy"><input type="checkbox" name="proxy" id="proxy" value="true">Proxy</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button id="run" name="run" type="submit" class="btn btn-primary">Run!</button>
+                </div>
+            </div>
+        </fieldset>
+
+    </form>
+</div>
